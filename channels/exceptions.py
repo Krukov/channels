@@ -66,7 +66,7 @@ class WebsocketCloseException(ChannelSocketException):
         self._code = code
 
     def run(self, message):
-        if message.reply_channel.name.split('.')[0] != "websocket":
+        if message.channel.name.split('.')[0] != "websocket":
             raise ValueError("You cannot raise CloseWebsocketError from a non-websocket handler.")
         message.reply_channel.send({"close": self._code or True})
 
